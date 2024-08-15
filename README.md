@@ -7,3 +7,6 @@
 
 ### "Calc game" screenshot:
 ![Screenshot](/calc.jpg)
+
+### "GCD game" screenshot:
+![Screenshot](/gcd.jpg)

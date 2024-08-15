@@ -23,6 +23,7 @@ public class Games {
         say("1 - Greet");
         say("2 - Even");
         say("3 - Calc");
+        say("4 - GCD");
         say("0 - Exit");
         Integer choice = Cli.takeInt();
         switch (choice) {
@@ -30,6 +31,7 @@ public class Games {
             case 1: greet(); break;
             case 2: gameEven(name); break;
             case 3: gameCalc(name); break;
+            case 4: gameGCD(name); break;
             default:
                 say("Sorry, I can not understand what " + choice + " means");
                 start(name);
@@ -103,6 +105,45 @@ public class Games {
                 say("Wrong answer. Counter was reset.");
             }
         }
+        say("Congratulations, " + name + "! You win!");
+        start(name);
+    };
+
+    public static void gameGCD(String name) {
+        say("In this game, you have to calculate a Greatest Common Divisor of two numbers.");
+        say("Just enter the value you've calculated.");
+        say("Any other reply is considered a mistake, so be cautious.");
+        say("In order to succeed, you have to give three correct answers consequently.");
+        int correctAnswers = 0;
+        int randomMultiplyCoef = 10;
+
+        while (correctAnswers < 3) {
+            var randomNumA = (int) (Math.random() * randomMultiplyCoef + Math.random() * randomMultiplyCoef);
+            var randomNumB = (int) (Math.random() * randomMultiplyCoef + Math.random() * randomMultiplyCoef);
+            int expectedResult = 0;
+            var randomMinAB = Math.min(randomNumA, randomNumB);
+            if (randomMinAB < 0 && randomMinAB == randomNumA) randomNumA++;
+            else if (randomMinAB < 0 && randomMinAB == randomNumB) randomNumB++;
+            for (int i = randomMinAB; i > 0; i--) {
+                //say("DEBUG FOR: i " + i);
+                if (randomNumA % i == 0 && randomNumB % i == 0) {
+                    expectedResult = i;
+                    break;
+                }
+            };
+
+            say("Greatest Common Divisor of " + randomNumA + " and " + randomNumB + " equals...");
+            var reply = (Cli.takeInt());
+
+            if (reply == expectedResult) {
+                correctAnswers++;
+                say("Correct!");
+            } else {
+                correctAnswers = 0;
+                say("Wrong answer. Counter was reset.");
+            }
+        }
+        say("Congratulations, " + name + "! You win!");
         start(name);
     };
 
