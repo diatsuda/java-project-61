@@ -13,3 +13,6 @@
 
 ### "Progression game" screenshot:
 ![Screenshot](/progression.jpg)
+
+### "Prime game" screenshot:
+![Screenshot](/prime.jpg)

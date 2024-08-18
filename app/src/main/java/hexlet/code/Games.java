@@ -26,6 +26,7 @@ public class Games {
         say("3 - Calc");
         say("4 - GCD");
         say("5 - Progression");
+        say("6 - Prime");
         say("0 - Exit");
         Integer choice = Cli.takeInt();
         switch (choice) {
@@ -35,6 +36,7 @@ public class Games {
             case 3: gameCalc(name); break;
             case 4: gameGCD(name); break;
             case 5: gameProgression(name); break;
+            case 6: gamePrime(name); break;
             default:
                 say("Sorry, I can not understand what " + choice + " means");
                 start(name);
@@ -186,6 +188,40 @@ public class Games {
             } else {
                 correctAnswers = 0;
                 say("Wrong answer. The correct one was " + expectedResult + ". Let's try again, " + name + "!");
+            }
+        }
+        say("Congratulations, " + name + "! You win!");
+        start(name);
+    };
+
+    public static void gamePrime(String name) {
+        say("In this game, you have to determine whether the number is prime or not.");
+        say("If prime, enter yes. Otherwise enter no.");
+        say("Any other reply is considered a mistake, so be cautious.");
+        say("In order to succeed, you have to give three correct answers consequently.");
+        int correctAnswers = 0;
+
+        while (correctAnswers < 3) {
+            int randomNumber = random(0, 1000);
+            if (randomNumber%2 == 0) randomNumber++;
+            int halvedRandomNumber = (int) (randomNumber / 2);
+            String expectedResult = "yes";
+
+            for (int i = 1; i < halvedRandomNumber; i++) {
+                if (randomNumber%i == 0) {
+                    expectedResult = "no";
+                    break;
+                };
+            };
+            say("Is " + randomNumber + " prime?");
+            var reply = (Cli.takeString());
+
+            if (reply.equals(expectedResult)) {
+                correctAnswers++;
+                say("Quite right!");
+            } else {
+                correctAnswers = 0;
+                say("Wrong. The correct answer was " + expectedResult + ". Let's try again, " + name + "!");
             }
         }
         say("Congratulations, " + name + "! You win!");
