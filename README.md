@@ -10,3 +10,6 @@
 
 ### "GCD game" screenshot:
 ![Screenshot](/gcd.jpg)
+
+### "Progression game" screenshot:
+![Screenshot](/progression.jpg)

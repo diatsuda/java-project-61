@@ -15,7 +15,6 @@ public class Cli {
         try {
             Integer.parseInt(response);
         } catch (Exception exception) {
-            System.out.println("You entered a non-integer value. The program will exit.");
             return 0;
         }
         return Integer.parseInt(response);
@@ -24,5 +23,28 @@ public class Cli {
     public static void say(String message) {
         System.out.println(message);
     }
+
+    public static int random(int min, int max) {
+        if (max < min) {
+            int buffer = max;
+            max = min;
+            min = buffer;
+        } else if (max == min) {
+            return max;
+        };
+
+        max += 1;
+        int rand = (int) (Math.random() * min + Math.random() * max);
+
+        while (rand < min || rand > max) {
+            if (rand < min) {
+                rand += ((int) (Math.random()*10) * max%min);
+            } else if (rand > max) {
+                rand -= ((int) (Math.random()*10) * max%min);
+            };
+        };
+
+        return rand;
+    };
 
 }
